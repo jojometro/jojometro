@@ -100,12 +100,7 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels.map(label => {
-                        return {
-                            image: data[label].image,
-                            text: label
-                        };
-                }),
+                labels: labels,
                 datasets: [{
                     label: 'Jojadas',
                     data: jojadas,
