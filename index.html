@@ -84,7 +84,7 @@
 
             // Definir a imagem correspondente ao item com o maior valor
             var img = new Image();
-            img.src = data[maxItem].image;
+            img.src = 'images/' + data[maxItem].image;
             img.onload = function() {
                 document.getElementById('topImage').src = img.src;
                 document.getElementById('topCard').style.display = 'block';
@@ -114,7 +114,13 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels,
+                // labels: labels,
+                labels: labels.map(label => {
+                        return {
+                            image: 'images/' + data[label].image, // Supondo que as imagens estejam em um diretório chamado "images"
+                            text: label
+                        };
+                    }),
                 datasets: [{
                     label: 'Jojadas',
                     data: jojadas,
@@ -137,7 +143,7 @@
 
                             bar.forEach(function(bar, index) {
                                 var img = new Image();
-                                img.src = images[index];
+                                img.src = 'images/' + images[index];        
                                 img.onload = function() {
                                     ctx.drawImage(img, bar.x - 12, bar.y - 12, 24, 24);
                                 }
