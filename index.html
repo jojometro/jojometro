@@ -45,19 +45,10 @@
 
         section {
             width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
             background-color: #fff;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-
-        .section-placar {
-            text-align: center;
-            max-width: 800px;
-            padding: 20px;
         }
     </style>
 </head>
@@ -65,19 +56,20 @@
     <div class="container">
         <h1>Bem vindo ao Jojometro.</h1>
         <p>Estamos a <span id="jojadasTotal">0</span> dias sem jojar.</p>
-        <b></b><a href="#" class="cta-button">PLACAR</a><b></b>
     </div>
 
     <section>
         <div class="section-content">
-            <h2>PLACAR do JOJOMETRO</h2>
+            <h2>PLACAR do JOJOMETRO</h2> 
+            <canvas id="myChart"></canvas>
         </div>
     </section>
 
 <script>
-    // JavaScript para atualizar o contador
+    
     window.onload = function() {
-        fetch('contador.json')
+            
+        fetch('jojadas.json')
         .then(response => response.json())
         .then(data => {
             document.getElementById('jojadasTotal').innerText = data.total;
@@ -85,7 +77,60 @@
         .catch(error => {
             console.error('Error:', error);
         });
+
+        fetch('placar.json')
+        .then(response => response.json())
+        .then(data => {
+            renderChart(data);
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
     };
+
+    function renderChart(data) {
+        var labels = Object.keys(data);
+        var values = Object.values(data);
+        var images = Object.values(data).map(item => item.image);
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Data',
+                    data: values,
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    custom: {
+                        draw: function(chart) {
+                            var ctx = chart.ctx;
+                            var bar = chart.getDatasetMeta(0).data;
+
+                            bar.forEach(function(bar, index) {
+                                var img = new Image();
+                                img.src = images[index];
+                                img.onload = function() {
+                                    ctx.drawImage(img, bar.x - 12, bar.y - 12, 24, 24);
+                                }
+                            });
+                        }
+                    }
+                }
+            }
+        });
+    }
 </script>
 </body>
 </html>
