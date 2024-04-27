@@ -92,6 +92,7 @@
     function renderChart(data) {
         var labels = Object.keys(data);
         var values = Object.values(data);
+        console.log(values)
         var images = Object.values(data).map(item => item.image);
 
         var ctx = document.getElementById('myChart').getContext('2d');
