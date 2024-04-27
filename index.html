@@ -57,6 +57,10 @@
     <div class="container">
         <h1>Bem vindo ao Jojometro.</h1>
         <p>Estamos a <span id="jojadasTotal">0</span> dias sem jojar.</p>
+        <div class="card" id="topCard" style="display: none;">
+            <h2>Top JOJADOR</h2>
+            <img id="topJojador" src="" alt="">
+        </div>
     </div>
 
     <section>
@@ -74,6 +78,17 @@
         .then(response => response.json())
         .then(data => {
             document.getElementById('jojadasTotal').innerText = data.total;
+            // Encontrar o item com o maior valor
+            var maxValue = Math.max(...Object.values(data));
+            var maxItem = Object.keys(data).find(key => data[key] === maxValue);
+
+            // Definir a imagem correspondente ao item com o maior valor
+            var img = new Image();
+            img.src = data[maxItem].image;
+            img.onload = function() {
+                document.getElementById('topImage').src = img.src;
+                document.getElementById('topCard').style.display = 'block';
+            }
         })
         .catch(error => {
             console.error('Error:', error);
@@ -92,7 +107,6 @@
     function renderChart(data) {
         var labels = Object.keys(data);
         var values = Object.values(data);
-        console.log(values)
         var images = Object.values(data).map(item => item.image);
         var jojadas = Object.values(data).map(item => item.value);
 
