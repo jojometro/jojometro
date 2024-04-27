@@ -80,8 +80,10 @@
             document.getElementById('jojadasTotal').innerText = data.total;
             // Encontrar o item com o maior valor
             var maxValue = Math.max(...Object.values(data));
+            console.log(maxItem);
             var maxItem = Object.keys(data).find(key => data[key] === maxValue);
 
+            console.log(maxItem);
             // Definir a imagem correspondente ao item com o maior valor
             var img = new Image();
             img.src = 'images/' + data[maxItem].image;
@@ -99,17 +101,18 @@
         fetch('placar.json')
         .then(response => response.json())
         .then(data => {
-            renderChart(data);
+
+            var images = Object.keys(data).map(label => data[label].image);
+            renderChart(data, images);
         })
         .catch(error => {
             console.error('Error:', error);
         });
     };
 
-    function renderChart(data) {
+    function renderChart(data, images) {
         var labels = Object.keys(data);
         var values = Object.values(data);
-        var images = Object.values(data).map(item => item.image);
         var jojadas = Object.values(data).map(item => item.value);
         console.log(images);
         var ctx = document.getElementById('myChart').getContext('2d');
