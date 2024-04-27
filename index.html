@@ -78,8 +78,9 @@
         .then(response => response.json())
         .then(data => {
             document.getElementById('jojadasTotal').innerText = data.total;
-            // Encontrar o item com o maior valor
-            var maxValue = Math.max(...Object.values(data));
+
+            var values = Object.values(data).map(obj => obj.value);
+            var maxValue = Math.max(...Object.values(values));
             console.log(maxItem);
             var maxItem = Object.keys(data).find(key => data[key] === maxValue);
 
