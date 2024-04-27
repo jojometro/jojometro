@@ -94,6 +94,7 @@
         var values = Object.values(data);
         console.log(values)
         var images = Object.values(data).map(item => item.image);
+        var jojadas = Object.values(data).map(item => item.value);
 
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
@@ -101,11 +102,11 @@
             data: {
                 labels: labels,
                 datasets: [{
-                    label: 'Data',
-                    data: values,
+                    label: 'Jojadas',
+                    data: jojadas,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
+                    borderWidth: 100
                 }]
             },
             options: {
