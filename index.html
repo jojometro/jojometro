@@ -85,8 +85,10 @@
             // Definir a imagem correspondente ao item com o maior valor
             var img = new Image();
             img.src = 'images/' + data[maxItem].image;
+            console.log(img);
+            console.log('images/' + data[maxItem].image);
             img.onload = function() {
-                document.getElementById('topImage').src = img.src;
+                document.getElementById('topJojador').src = img.src;
                 document.getElementById('topCard').style.display = 'block';
             }
         })
@@ -109,7 +111,7 @@
         var values = Object.values(data);
         var images = Object.values(data).map(item => item.image);
         var jojadas = Object.values(data).map(item => item.value);
-
+        console.log(images);
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
