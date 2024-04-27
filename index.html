@@ -100,13 +100,18 @@
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                labels: labels,
+                labels: labels.map(label => {
+                        return {
+                            image: data[label].image,
+                            text: label
+                        };
+                }),
                 datasets: [{
                     label: 'Jojadas',
                     data: jojadas,
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 100
+                    borderWidth: 1
                 }]
             },
             options: {
