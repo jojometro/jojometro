@@ -1,5 +1,13 @@
 [
-    {"nome": "Kakashi", "value": 10, "image": "kakashi.jpeg"},
-    {"nome": "Solano", "value": 20, "image": "solano.jpeg"},
-    {"nome": "Jojo", "value": 30, "image": "jojo.jpeg"}
+    {"nome": "Kakashi", "value": 0, "image": "kakashi.jpeg"},
+    {"nome": "Solano", "value": 0, "image": "solano.jpeg"},
+    {"nome": "Jojo", "value": 0, "image": "jojo.jpeg"},
+    {"nome": "Lucy", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Will", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Ramon", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Wesley", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Jhorgete", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Gabriel", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Mr-Vittor", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Joki", "value": 0, "image": "semFoto.jpeg"}
 ]

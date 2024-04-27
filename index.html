@@ -59,7 +59,7 @@
         <p>Estamos a <span id="jojadasTotal">0</span> dias sem jojar.</p>
         <div class="card" id="topCard" style="display: none;">
             <h2>Top JOJADOR</h2>
-            <img id="topJojador" src="" alt="">
+            <img id="topJojador" src="" alt="" style="max-width: 100px; max-height: 100px;">
         </div>
     </div>
 
@@ -88,22 +88,21 @@
         .then(data => {
 
             var values = Object.values(data).map(obj => obj.value);
-            console.log('1', values);
             var maxValue = Math.max(...Object.values(values));
-            console.log('2', maxValue);
-            var maxItem = Object.keys(data).find(key => data[key] === maxValue);
-            console.log('3', maxItem);
-            // Definir a imagem correspondente ao item com o maior valor
-            var img = new Image();
-            img.src = 'images/' + data[maxItem].image;
-            console.log('4', img);
-            console.log('5', 'images/' + data[maxItem].image);
-            img.onload = function() {
-                document.getElementById('topJojador').src = img.src;
-                document.getElementById('topCard').style.display = 'block';
+
+            if(maxValue > 0){
+                var maxItem = Object.keys(data).find(key => data[key].value === maxValue);
+                
+                // Definir a imagem correspondente ao item com o maior valor
+                var img = new Image();
+                img.src = 'images/' + data[maxItem].image;
+                
+                img.onload = function() {
+                    document.getElementById('topJojador').src = img.src;
+                    document.getElementById('topCard').style.display = 'block';
+                }
             }
 
-            console.log('6', data);
             renderChart(data);
         })
         .catch(error => {
@@ -112,22 +111,13 @@
     };
 
     function renderChart(data) {
-        console.log('7', data)
         var labels = Object.values(data).map(item => item.nome);
-        var images = Object.values(data).map(item => item.image);
         var jojadas = Object.values(data).map(item => item.value);
-        console.log('8', images);
         var ctx = document.getElementById('myChart').getContext('2d');
         var myChart = new Chart(ctx, {
             type: 'bar',
             data: {
-                // labels: labels,
-                labels: labels.map(label => {
-                        return {
-                            image: 'images/' + data[label].image, // Supondo que as imagens estejam em um diretório chamado "images"
-                            text: label
-                        };
-                    }),
+                labels: labels,
                 datasets: [{
                     label: 'Jojadas',
                     data: jojadas,
@@ -147,14 +137,6 @@
                         draw: function(chart) {
                             var ctx = chart.ctx;
                             var bar = chart.getDatasetMeta(0).data;
-
-                            bar.forEach(function(bar, index) {
-                                var img = new Image();
-                                img.src = 'images/' + images[index];        
-                                img.onload = function() {
-                                    ctx.drawImage(img, bar.x - 12, bar.y - 12, 24, 24);
-                                }
-                            });
                         }
                     }
                 }
