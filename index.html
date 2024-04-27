@@ -11,19 +11,24 @@
             padding: 0;
             box-sizing: border-box;
             background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
+
         .container {
-            width: 80%;
-            margin: 0 auto;
             text-align: center;
-            padding: 50px 0;
         }
+
         h1 {
             color: #333;
         }
+
         p {
             color: #666;
         }
+
         .cta-button {
             display: inline-block;
             background-color: #007bff;
@@ -33,16 +38,56 @@
             border-radius: 5px;
             transition: background-color 0.3s ease;
         }
+
         .cta-button:hover {
             background-color: #0056b3;
+        }
+
+        section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-placar {
+            text-align: center;
+            max-width: 800px;
+            padding: 20px;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Bem vindo ao Jojometro.</h1>
-        <p>Estamos a 00 dias sem jojar.</p>
+        <p>Estamos a <span id="jojadasTotal">0</span> dias sem jojar.</p>
         <b></b><a href="#" class="cta-button">PLACAR</a><b></b>
     </div>
+
+    <section>
+        <div class="section-content">
+            <h2>PLACAR do JOJOMETRO</h2>
+        </div>
+    </section>
+
+<script>
+    // JavaScript para atualizar o contador
+    window.onload = function() {
+        fetch('contador.json')
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('jojadasTotal').innerText = data.total;
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
+</script>
 </body>
 </html>
+
+
