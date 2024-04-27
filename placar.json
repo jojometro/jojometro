@@ -1,5 +1,5 @@
-{
-    "Kakashi": {"value": 10, "image": "kakashi.jpeg"},
-    "Solano": {"value": 20, "image": "solano.jpeg"},
-    "Jojo": {"value": 30, "image": "jojo.jpeg"}
-}
+[
+    {"nome": "Kakashi", "value": 10, "image": "kakashi.jpeg"},
+    {"nome": "Solano", "value": 20, "image": "solano.jpeg"},
+    {"nome": "Jojo", "value": 30, "image": "jojo.jpeg"}
+]

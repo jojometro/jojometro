@@ -80,6 +80,8 @@
             document.getElementById('jojadasTotal').innerText = data.total;
 
             var values = Object.values(data).map(obj => obj.value);
+            
+            console.log(values);
             var maxValue = Math.max(...Object.values(values));
             console.log(maxItem);
             var maxItem = Object.keys(data).find(key => data[key] === maxValue);
@@ -103,17 +105,17 @@
         .then(response => response.json())
         .then(data => {
 
-            var images = Object.keys(data).map(label => data[label].image);
-            renderChart(data, images);
+            console.log(data);
+            renderChart(data);
         })
         .catch(error => {
             console.error('Error:', error);
         });
     };
 
-    function renderChart(data, images) {
-        var labels = Object.keys(data);
-        var values = Object.values(data);
+    function renderChart(data) {
+        var labels = Object.values(data).map(item => item.nome);
+        var images = Object.values(data).map(item => item.image);
         var jojadas = Object.values(data).map(item => item.value);
         console.log(images);
         var ctx = document.getElementById('myChart').getContext('2d');
