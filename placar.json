@@ -5,7 +5,7 @@
     {"nome": "Lucy", "value": 0, "image": "semFoto.jpeg"},
     {"nome": "Will", "value": 0, "image": "semFoto.jpeg"},
     {"nome": "Ramon", "value": 0, "image": "semFoto.jpeg"},
-    {"nome": "Wesley", "value": 0, "image": "semFoto.jpeg"},
+    {"nome": "Wesley", "value": 1, "image": "semFoto.jpeg"},
     {"nome": "Jhorgete", "value": 0, "image": "semFoto.jpeg"},
     {"nome": "Gabriel", "value": 0, "image": "semFoto.jpeg"},
     {"nome": "Mr-Vittor", "value": 0, "image": "semFoto.jpeg"},
