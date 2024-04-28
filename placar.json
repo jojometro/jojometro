@@ -1,7 +1,7 @@
 [
     {"nome": "Kakashi", "value": 0, "image": "kakashi.jpeg"},
     {"nome": "Solano", "value": 0, "image": "solano.jpeg"},
-    {"nome": "Jojo", "value": 0, "image": "jojo.jpeg"},
+    {"nome": "Jojo", "value": 1, "image": "jojo.jpeg"},
     {"nome": "Lucy", "value": 0, "image": "semFoto.jpeg"},
     {"nome": "Will", "value": 0, "image": "semFoto.jpeg"},
     {"nome": "Ramon", "value": 0, "image": "semFoto.jpeg"},
